@@ -1,4 +1,4 @@
-package iteration1;
+package iteration2;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -44,7 +44,7 @@ public class SquareTest {
 	@Test
 	public void iter() {
 		Square sq = Square.A1;
-		for(Square newSq : sq.allInDirection(Direction.UP_RIGHT)) {
+		for(Square newSq : sq.getAllSquaresInDirection(Direction.UP_RIGHT)) {
 			System.out.println(newSq);
 		}
 	}
