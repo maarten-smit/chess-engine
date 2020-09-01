@@ -7,18 +7,26 @@ public class Move {
 		CASTLES = 2,
 		EN_PASSANT = 3;
 	
-	private int pieceType;
+	private PieceType pieceType;
 	
 	private Square source;
 	private Square dest;
 	
 	private int specialMove;
 
-	public int getPieceType() {
+	private Move() {};
+	
+	public Move(PieceType pieceType, Square source, Square dest) {
+		this.pieceType = pieceType;
+		this.source = source;
+		this.dest = dest;
+	}
+	
+	public PieceType getPieceType() {
 		return pieceType;
 	}
 
-	private void setPieceType(int pieceType) {
+	private void setPieceType(PieceType pieceType) {
 		this.pieceType = pieceType;
 	}
 
@@ -48,27 +56,28 @@ public class Move {
 	
 	@Override
 	public String toString() {
+		//FIXME
 		StringBuilder sb = new StringBuilder();
 		if(specialMove == CASTLES) {
-			//TODO
+			
 		} else {
-			sb.append(PieceType.genericCode(pieceType));
+			sb.append(pieceType.toString());
 			sb.append(source.toString());
-			sb.append(specialMove == 0 ? "-" : "x");
+			sb.append(specialMove == 0 ? "-" : "x"); 
 			sb.append(dest.toString());
 		}
 		return sb.toString();
 	}
 	
 	public static class MoveBuilder {
-		private int pieceType;
+		private PieceType pieceType;
 		
 		private Square source;
 		private Square dest;
 		
 		private int specialMove;
 		
-		public MoveBuilder pieceType(int pieceType) {
+		public MoveBuilder pieceType(PieceType pieceType) {
 			this.pieceType = pieceType;
 			return this;
 		}
@@ -105,7 +114,7 @@ public class Move {
 	}
 	
 	private boolean isPawnMove() {
-		return pieceType % 6 == 5;
+		return pieceType == PieceType.WHITE_P || pieceType == PieceType.BLACK_P;
 	}
 	
 	private boolean isCapture() {
