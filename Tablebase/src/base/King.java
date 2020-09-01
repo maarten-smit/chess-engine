@@ -11,6 +11,11 @@ public class King extends PieceType {
 	}
 	
 	@Override
+	public boolean canResultFromPromotion() {
+		return false;
+	}
+	
+	@Override
 	public String doToString() {
 		return "K";
 	}

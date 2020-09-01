@@ -5,23 +5,30 @@ public class Move {
 		NONE = 0,
 		CAPTURES = 1,
 		CASTLES = 2,
-		EN_PASSANT = 3;
+		EN_PASSANT = 3,
+		PROMOTION = 4,
+		PROMOTION_CAPTURE = 5;
 	
 	private PieceType pieceType;
 	
 	private Square source;
 	private Square dest;
 	
-	private int specialMove;
+	private SpecialMoveType specialMove;
 
 	private Move() {};
 	
 	public Move(PieceType pieceType, Square source, Square dest) {
+		this(pieceType, source, dest, null);
+	}
+	
+	public Move(PieceType pieceType, Square source, Square dest, SpecialMoveType specialMove) {
 		this.pieceType = pieceType;
 		this.source = source;
 		this.dest = dest;
+		this.specialMove = specialMove;
 	}
-	
+
 	public PieceType getPieceType() {
 		return pieceType;
 	}
@@ -46,11 +53,11 @@ public class Move {
 		this.dest = dest;
 	}
 
-	public int getSpecialMove() {
+	public SpecialMoveType getSpecialMove() {
 		return specialMove;
 	}
 
-	private void setSpecialMove(int specialMove) {
+	private void setSpecialMove(SpecialMoveType specialMove) {
 		this.specialMove = specialMove;
 	}
 	
@@ -58,14 +65,10 @@ public class Move {
 	public String toString() {
 		//FIXME
 		StringBuilder sb = new StringBuilder();
-		if(specialMove == CASTLES) {
-			
-		} else {
-			sb.append(pieceType.toString());
-			sb.append(source.toString());
-			sb.append(specialMove == 0 ? "-" : "x"); 
-			sb.append(dest.toString());
-		}
+		sb.append(pieceType.toString());
+		sb.append(source.toString());
+		sb.append("-"); 
+		sb.append(dest.toString());
 		return sb.toString();
 	}
 	
@@ -75,7 +78,7 @@ public class Move {
 		private Square source;
 		private Square dest;
 		
-		private int specialMove;
+		private SpecialMoveType specialMove;
 		
 		public MoveBuilder pieceType(PieceType pieceType) {
 			this.pieceType = pieceType;
@@ -92,7 +95,7 @@ public class Move {
 			return this;
 		}
 		
-		public MoveBuilder specialMove(int specialMove) {
+		public MoveBuilder specialMove(SpecialMoveType specialMove) {
 			this.specialMove = specialMove;
 			return this;
 		}
@@ -118,6 +121,6 @@ public class Move {
 	}
 	
 	private boolean isCapture() {
-		return specialMove % 2 == 1;
+		return false;
 	}
 }

@@ -127,6 +127,11 @@ public final class Square implements Comparable<Square> {
 				!white && getRankIndex() == getRankCount() - 2;
 	}
 	
+	public boolean isPromotionSquare(boolean white) {
+		return white && getRankIndex() == getRankCount() - 1 ||
+				!white && getRankIndex() == 0;
+	}
+	
 	@Override
 	public String toString() {
 		return getFileCount() <= 26 ? toAlgebraic() : toCoordinate();
@@ -283,4 +288,6 @@ public final class Square implements Comparable<Square> {
 		}
 		
 	}
+
+	
 }

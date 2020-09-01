@@ -12,7 +12,7 @@ public class GameStateTest {
 		Random r = new Random();
 		GameState gs = new GameState(PieceBoardState.initial(), true);
 		List<Move> legalMoves;
-		for(int i = 0; i < 10; i++) {
+		for(int i = 0; i < 10000; i++) {
 			legalMoves = gs.getLegalMoves();
 			System.out.println(gs.getBoardState());
 			gs.apply(legalMoves.get(r.nextInt(legalMoves.size())));

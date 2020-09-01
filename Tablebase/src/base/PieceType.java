@@ -1,5 +1,8 @@
 package base;
 
+import java.util.Arrays;
+import java.util.Collection;
+
 public abstract class PieceType {
 	public static final PieceType WHITE_K = new King(true);
 	public static final PieceType WHITE_Q = new Queen(true);
@@ -24,9 +27,17 @@ public abstract class PieceType {
 		return white;
 	}
 	
+	public boolean canResultFromPromotion() {
+		return true;
+	}
+	
 	@Override
 	public final String toString() {
 		return white ? doToString() : doToString().toLowerCase();
+	}
+	
+	public Collection<Move> process(Square source, Square dest) {
+		return Arrays.asList(new Move[] {new Move(this, source, dest)});
 	}
 	
 	public abstract MoveStrategy getMoveStrategy(BoardState<?> boardState);

@@ -25,7 +25,7 @@ public abstract class LongRangeMoveStrategy extends MoveStrategy {
 			if(potentialCapture == null) {
 				legalMoves.add(potentialSquare);
 			} else {
-				if(potentialCapture.isWhite() ^ boardState.getPiece(source).isWhite()) {
+				if(potentialCapture.isWhite() != boardState.getPiece(source).isWhite()) {
 					legalMoves.add(potentialSquare);
 				}
 				break;

@@ -13,7 +13,7 @@ public abstract class ShortRangeMoveStrategy extends MoveStrategy {
 		Collection<Square> legalMoves = new ArrayList<>(0);
 		for(Square potentialSquare : source.inBounds(getDeltas())) {
 			PieceType potentialPiece = boardState.getPiece(potentialSquare);
-			if(potentialPiece == null || potentialPiece.isWhite() == boardState.getPiece(potentialSquare).isWhite()) {
+			if(potentialPiece == null || potentialPiece.isWhite() != boardState.getPiece(potentialSquare).isWhite()) {
 				legalMoves.add(potentialSquare);
 			}
 		}

@@ -107,9 +107,7 @@ public class PieceBoardState extends AbstractBoardState<PieceBoardState> impleme
 		PieceType king = white ? PieceType.WHITE_K : PieceType.BLACK_K;
 		Square target = getSquares(king).iterator().next();
 		for(PieceLocation pl : pieces) {
-			System.out.println(pl.getPiece() + ", " + pl.getLocation() + ":");
 			Collection<Square> moves = new LegalMoveFinder(pl.getLocation(), this).getAll();
-			System.out.println(moves);
 			if(moves.contains(target)) {
 				inCheck = true;
 				break;
