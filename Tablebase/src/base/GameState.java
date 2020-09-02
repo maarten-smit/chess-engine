@@ -34,7 +34,7 @@ public class GameState {
 			if(current != null && current.isWhite() == whiteToMove) {
 				Collection<Square> legalSquares = new LegalMoveFinder(source, boardState).getAll();
 				for(Square dest : legalSquares) {
-					potentialMoves.add(new Move(current, source, dest));
+					potentialMoves.addAll(current.process(source, dest));
 				}
 			}
 		}

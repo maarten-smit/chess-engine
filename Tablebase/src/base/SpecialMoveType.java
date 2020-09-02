@@ -1,5 +1,7 @@
 package base;
 
-public class SpecialMoveType {
+public abstract class SpecialMoveType {
+
+	public abstract void handle(BoardState<?> boardState, Square dest);
 	
 }

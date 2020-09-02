@@ -32,4 +32,15 @@ public class Promotion extends SpecialMoveType {
 	public PieceType getResult() {
 		return result;
 	}
+
+	@Override
+	public void handle(BoardState<?> boardState, Square dest) {
+		boardState.empty(dest);
+		boardState.add(result, dest);
+	}
+	
+	@Override
+	public String toString() {
+		return "(" + result + ")";
+	}
 }

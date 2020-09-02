@@ -69,6 +69,9 @@ public class Move {
 		sb.append(source.toString());
 		sb.append("-"); 
 		sb.append(dest.toString());
+		if(specialMove != null) {
+			sb.append(specialMove);
+		}
 		return sb.toString();
 	}
 	

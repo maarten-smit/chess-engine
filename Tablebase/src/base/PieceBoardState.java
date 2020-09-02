@@ -34,6 +34,9 @@ public class PieceBoardState extends AbstractBoardState<PieceBoardState> impleme
 		empty(m.getDest());
 		empty(m.getSource());
 		add(m.getPieceType(), m.getDest());
+		if(m.getSpecialMove() != null) {
+			m.getSpecialMove().handle(this, m.getDest());
+		}
 	}
 
 	@Override
