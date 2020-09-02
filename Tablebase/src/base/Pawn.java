@@ -22,6 +22,8 @@ public class Pawn extends PieceType {
 			for(Promotion p : promotions) {
 				moves.add(new Move(this, source, dest, p));
 			}
+		} else if(Math.abs(source.getRankIndex() - dest.getRankIndex()) == 2){
+			moves.add(new Move(this, source, dest, new DoublePawnPush()));
 		} else {
 			moves.add(new Move(this, source, dest));
 		}

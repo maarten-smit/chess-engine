@@ -63,4 +63,6 @@ public interface BoardState<T extends BoardState<T>> extends Iterable<Square> {
 	boolean inStaleMate(boolean white);
 	
 	Square getEPTarget();
+	
+	void setEPTarget(Square target);
 }

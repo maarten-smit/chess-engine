@@ -30,14 +30,14 @@ public class PawnMoveStrategy extends MoveStrategy {
 		if(source.getFileIndex() > 0) {
 			Square toLeftCapture = source.nextInDirection(white ? Direction.UP_LEFT : Direction.DOWN_LEFT);
 			PieceType potentialLeftCapture = boardState.getPiece(toLeftCapture);
-			if(potentialLeftCapture != null && (potentialLeftCapture.isWhite() ^ white)) {
+			if(toLeftCapture.equals(boardState.getEPTarget()) || potentialLeftCapture != null && (potentialLeftCapture.isWhite() ^ white)) {
 				legalMoves.add(toLeftCapture);
 			}
 		}
 		if(source.getFileIndex() < source.getFileCount() - 1) {
 			Square toRightCapture = source.nextInDirection(white ? Direction.UP_RIGHT : Direction.DOWN_RIGHT);
 			PieceType potentialRightCapture = boardState.getPiece(toRightCapture);
-			if(potentialRightCapture != null && (potentialRightCapture.isWhite() ^ white)) {
+			if(toRightCapture.equals(boardState.getEPTarget()) || potentialRightCapture != null && (potentialRightCapture.isWhite() ^ white)) {
 				legalMoves.add(toRightCapture);
 			}
 		}

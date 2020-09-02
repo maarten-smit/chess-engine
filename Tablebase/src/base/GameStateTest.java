@@ -1,5 +1,7 @@
 package base;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.List;
 import java.util.Random;
 
@@ -49,5 +51,20 @@ public class GameStateTest {
 		bs.add(PieceType.WHITE_N, Square.C2);
 		bs.add(PieceType.BLACK_N, Square.B4);
 		System.out.println(new GameState(bs, true).getLegalMoves());
+	}
+	
+	@Test
+	public void ep() {
+		BoardState<?> bs = new PieceBoardState(8, 8);
+		bs.add(PieceType.WHITE_P, Square.E2);
+		bs.add(PieceType.BLACK_P, Square.D4);
+		bs.add(PieceType.WHITE_K, Square.H1);
+		bs.add(PieceType.BLACK_K, Square.H8);
+		GameState gs = new GameState(bs, true);
+		gs.apply(PieceType.WHITE_P.process(Square.E2, Square.E4).iterator().next());
+		assertEquals(Square.E3, gs.getBoardState().getEPTarget());
+		System.out.println(bs);
+		gs.apply(PieceType.BLACK_P.process(Square.D4, Square.E3).iterator().next());
+		System.out.println(bs);
 	}
 }

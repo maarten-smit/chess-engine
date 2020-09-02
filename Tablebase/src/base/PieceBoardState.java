@@ -11,6 +11,8 @@ public class PieceBoardState extends AbstractBoardState<PieceBoardState> impleme
 	
 	private final List<PieceLocation> pieces;
 	
+	private Square epTarget;
+	
 	public PieceBoardState(int fileCount, int rankCount) {
 		if(rankCount <= 2 && fileCount <= 2) {
 			throw new IllegalArgumentException("board too small");
@@ -40,8 +42,16 @@ public class PieceBoardState extends AbstractBoardState<PieceBoardState> impleme
 		empty(m.getDest());
 		empty(m.getSource());
 		add(m.getPieceType(), m.getDest());
+		handleEP(m);
 		if(m.getSpecialMove() != null) {
-			m.getSpecialMove().handle(this, m.getDest());
+			m.getSpecialMove().handle(this, m);
+		}
+	}
+	
+	//TODO dirty, refactor pls
+	private void handleEP(Move m) {
+		if(m.getPieceType().isPawn() && m.getDest().equals(epTarget)) {
+			new EnPassant().handle(this, m);
 		}
 	}
 
@@ -137,8 +147,12 @@ public class PieceBoardState extends AbstractBoardState<PieceBoardState> impleme
 
 	@Override
 	public Square getEPTarget() {
-		//TODO
-		return null;
+		return epTarget;
+	}
+
+	@Override
+	public void setEPTarget(Square target) {
+		epTarget = target;
 	}
 	
 	

@@ -76,4 +76,10 @@ public class BitBoardState implements BoardState<BitBoardState> {
 		return null;
 	}
 
+	@Override
+	public void setEPTarget(Square target) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
