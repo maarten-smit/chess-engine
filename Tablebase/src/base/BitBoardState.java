@@ -70,4 +70,10 @@ public class BitBoardState implements BoardState<BitBoardState> {
 		return false;
 	}
 
+	@Override
+	public Square getEPTarget() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

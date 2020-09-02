@@ -31,6 +31,10 @@ public abstract class PieceType {
 		return true;
 	}
 	
+	public boolean isPawn() {
+		return false;
+	}
+	
 	@Override
 	public final String toString() {
 		return white ? doToString() : doToString().toLowerCase();

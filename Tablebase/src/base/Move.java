@@ -61,6 +61,16 @@ public class Move {
 		this.specialMove = specialMove;
 	}
 	
+	public boolean isDoublePawnPush() {
+		boolean isDoublePawnPush = false;
+		if(pieceType.isPawn()) {
+			int distance = dest.getRankIndex() - source.getRankIndex();
+			isDoublePawnPush = pieceType.isWhite() && distance == 2 ||
+					!pieceType.isWhite() && distance == -2;
+		}
+		return isDoublePawnPush;
+	}
+	
 	@Override
 	public String toString() {
 		//FIXME

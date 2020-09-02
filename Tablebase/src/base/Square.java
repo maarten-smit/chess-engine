@@ -132,6 +132,18 @@ public final class Square implements Comparable<Square> {
 				!white && getRankIndex() == 0;
 	}
 	
+	public Square epCapture() {
+		Square epCapture = null;
+		if(getRankIndex() == 2) {
+			epCapture = nextInDirection(Direction.UP);
+		} else if(getRankIndex() == getRankCount() - 3) {
+			epCapture = nextInDirection(Direction.DOWN);
+		} else {
+			throw new IllegalStateException("not an ep target");
+		}
+		return epCapture;
+	}
+	
 	@Override
 	public String toString() {
 		return getFileCount() <= 26 ? toAlgebraic() : toCoordinate();

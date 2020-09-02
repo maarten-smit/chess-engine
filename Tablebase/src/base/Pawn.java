@@ -34,6 +34,11 @@ public class Pawn extends PieceType {
 	}
 	
 	@Override
+	public boolean isPawn() {
+		return true;
+	}
+	
+	@Override
 	public String doToString() {
 		return "P";
 	}

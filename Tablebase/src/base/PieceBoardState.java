@@ -12,6 +12,12 @@ public class PieceBoardState extends AbstractBoardState<PieceBoardState> impleme
 	private final List<PieceLocation> pieces;
 	
 	public PieceBoardState(int fileCount, int rankCount) {
+		if(rankCount <= 2 && fileCount <= 2) {
+			throw new IllegalArgumentException("board too small");
+		}
+		if(rankCount < 6) {
+			System.out.println("Warning: rankCount might break e.p. rules");
+		}
 		this.fileCount = fileCount;
 		this.rankCount = rankCount;
 		pieces = new ArrayList<>();
@@ -128,4 +134,12 @@ public class PieceBoardState extends AbstractBoardState<PieceBoardState> impleme
 	public boolean inStaleMate(boolean white) {
 		return !inCheck(white) && new GameState(this, white).getLegalMoves().isEmpty();
 	}
+
+	@Override
+	public Square getEPTarget() {
+		//TODO
+		return null;
+	}
+	
+	
 }

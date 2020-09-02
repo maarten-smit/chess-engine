@@ -8,6 +8,7 @@ public class GameState {
 	
 	private BoardState<?> boardState;
 	private boolean whiteToMove;
+	private Square epTarget;
 	
 	public GameState(BoardState<?> boardState, boolean whiteToMove) {
 		this.boardState = boardState;
@@ -24,6 +25,11 @@ public class GameState {
 	
 	public void apply(Move m) {
 		boardState.apply(m);
+		if(m.isDoublePawnPush()) {
+			epTarget = m.getSource().nextInDirection(whiteToMove ? Direction.UP : Direction.DOWN);
+		} else {
+			epTarget = null;
+		}
 		whiteToMove = !whiteToMove;
 	}
 	
