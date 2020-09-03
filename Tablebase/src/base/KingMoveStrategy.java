@@ -19,5 +19,4 @@ public class KingMoveStrategy extends ShortRangeMoveStrategy {
 			new int[] {0, 1}
 		};
 	}
-
 }

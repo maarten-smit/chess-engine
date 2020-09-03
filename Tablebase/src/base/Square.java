@@ -132,6 +132,12 @@ public final class Square implements Comparable<Square> {
 				!white && getRankIndex() == 0;
 	}
 	
+	public boolean isKingHome(boolean white) {
+		//TODO test castles with custom board sizes
+		return white && equals(Square.E1) ||
+				!white && equals(Square.E8);
+	}
+	
 	public Square epCapture() {
 		Square epCapture = null;
 		if(getRankIndex() == 2) {

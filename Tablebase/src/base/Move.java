@@ -72,6 +72,17 @@ public class Move {
 	}
 	
 	@Override
+	public boolean equals(Object obj) {
+		boolean equals = super.equals(obj);
+		if(!equals && obj instanceof Move) {
+			Move that = (Move) obj;
+			equals = this.getSource().equals(that.getSource()) &&
+					this.getDest().equals(that.getDest());
+		}
+		return equals;
+	}
+	
+	@Override
 	public String toString() {
 		//FIXME
 		StringBuilder sb = new StringBuilder();

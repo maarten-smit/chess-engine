@@ -67,4 +67,15 @@ public class GameStateTest {
 		gs.apply(PieceType.BLACK_P.process(Square.D4, Square.E3).iterator().next());
 		System.out.println(bs);
 	}
+	
+	@Test
+	public void castles() {
+		BoardState<?> bs = new PieceBoardState(8, 8);
+		bs.add(PieceType.WHITE_K, Square.E1);
+		bs.add(PieceType.WHITE_R, Square.H1);
+		bs.add(PieceType.BLACK_K, Square.E8);
+		GameState gs = new GameState(bs, true);
+		gs.setCastlingRights(1);
+		System.out.println(gs.getLegalMoves());
+	}
 }

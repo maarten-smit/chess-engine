@@ -8,7 +8,8 @@ public class GameState {
 	
 	private BoardState<?> boardState;
 	private boolean whiteToMove;
-	private Square epTarget;
+	
+	private boolean whiteOORights, whiteOOORights, blackOORights, blackOOORights;
 	
 	public GameState(BoardState<?> boardState, boolean whiteToMove) {
 		this.boardState = boardState;
@@ -25,11 +26,6 @@ public class GameState {
 	
 	public void apply(Move m) {
 		boardState.apply(m);
-		if(m.isDoublePawnPush()) {
-			epTarget = m.getSource().nextInDirection(whiteToMove ? Direction.UP : Direction.DOWN);
-		} else {
-			epTarget = null;
-		}
 		whiteToMove = !whiteToMove;
 	}
 	
@@ -44,6 +40,7 @@ public class GameState {
 				}
 			}
 		}
+		
 		List<Move> illegalMoves = new ArrayList<>(0);
 		for(Move move : potentialMoves) {
 			//remember potential capture
@@ -64,5 +61,34 @@ public class GameState {
 	
 	public boolean isLegal() {
 		return !boardState.inCheck(whiteToMove);
+	}
+	
+	public void setCastlingRights(int value) {
+		blackOOORights = (value & 1) == 1;
+		blackOORights = (value & 2) == 1;
+		whiteOOORights = (value & 4) == 1;
+		whiteOORights = (value & 8) == 1;
+	}
+	
+	public boolean isWhiteOORights() {
+		return whiteOORights;
+	}
+
+	public boolean isWhiteOOORights() {
+		return whiteOOORights;
+	}
+
+	public boolean isBlackOORights() {
+		return blackOORights;
+	}
+
+	public boolean isBlackOOORights() {
+		return blackOOORights;
+	}
+
+	public static GameState initial() {
+		GameState gs = new GameState(PieceBoardState.initial(), true);
+		gs.setCastlingRights(0b1111);
+		return gs;
 	}
 }
