@@ -9,6 +9,6 @@ public class EnPassant extends SpecialMoveType {
 
 	@Override
 	public String toString() {
-		return "e.p.";
+		return "(e.p.)";
 	}
 }

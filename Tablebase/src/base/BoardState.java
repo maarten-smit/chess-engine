@@ -56,6 +56,9 @@ public interface BoardState<T extends BoardState<T>> extends Iterable<Square> {
 	 * @param white which king should be checked
 	 * @return whether given king is in check
 	 */
+	
+	boolean isLegal(boolean white);
+	
 	boolean inCheck(boolean white);
 	
 	boolean inCheckMate(boolean white);

@@ -8,4 +8,8 @@ public class Castles extends SpecialMoveType {
 
 	}
 
+	@Override
+	public String toString() {
+		return "(Castles)";
+	}
 }

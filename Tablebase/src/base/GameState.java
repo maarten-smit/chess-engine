@@ -40,7 +40,9 @@ public class GameState {
 				}
 			}
 		}
-		
+		if(!boardState.inCheck(whiteToMove)) {
+			new CastleHandler(this).addLegalCastles(potentialMoves);
+		}
 		List<Move> illegalMoves = new ArrayList<>(0);
 		for(Move move : potentialMoves) {
 			//remember potential capture
@@ -64,10 +66,10 @@ public class GameState {
 	}
 	
 	public void setCastlingRights(int value) {
-		blackOOORights = (value & 1) == 1;
-		blackOORights = (value & 2) == 1;
-		whiteOOORights = (value & 4) == 1;
-		whiteOORights = (value & 8) == 1;
+		whiteOORights = (value & 1) == 1;
+		whiteOOORights = (value & 2) == 2;
+		blackOORights = (value & 4) == 4;
+		blackOOORights = (value & 8) == 8;
 	}
 	
 	public boolean isWhiteOORights() {

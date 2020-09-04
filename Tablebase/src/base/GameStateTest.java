@@ -18,7 +18,8 @@ public class GameStateTest {
 			
 			legalMoves = gs.getLegalMoves();
 			System.out.println(gs.getBoardState());
-			gs.apply(legalMoves.get(r.nextInt(legalMoves.size())));
+			Move m = legalMoves.get(r.nextInt(legalMoves.size()));
+			gs.apply(m);
 		}
 	}
 

@@ -119,6 +119,11 @@ public class PieceBoardState extends AbstractBoardState<PieceBoardState> impleme
 		pbs.startingPosition();
 		return pbs;
 	}
+	
+	@Override
+	public boolean isLegal(boolean white) {
+		return !inCheck(!white);
+	}
 
 	@Override
 	public boolean inCheck(boolean white) {
